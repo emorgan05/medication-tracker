@@ -17,6 +17,12 @@
         </ul>
       </p>
 
+      <form method="get" action="/medicines/<%= @medicine.id %>/edit">
+        <input type="submit" value="Edit this medicine"/>
+      </form>
+      <form method="post" action="/medicines/<%= @medicine.id %>/delete">
+        <input type="submit" value="Delete this medicine"/>
+      </form>
       <form method="get" action="/logout">
         <input type="submit" value="Logout"/>
       </form>
