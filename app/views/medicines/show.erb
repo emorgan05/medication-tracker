@@ -1,19 +1,19 @@
 <div class="container">
   <header><img src="" class="img-responsive main-image"></header>
   <div class="col-md-8 col-md-offset-2">
-    <h2>Welcome, <%= @user.username %></h2>
+    <h2><%= @medicine.name %></h2>
 
     <div class="content">
       <p>
         <ul>
-          <% @user.medicines.each do |medicine| %>
-            <li><h3><a href="/medicine/<%= medicine.id %>"><%= medicine.name %></a></h3></li>
-            <li><%= medicine.strength %></li>
-            <li><%= medicine.doctor %></li>
-            <li><%= medicine.dose_number %></li>
-            <li><%= medicine.dose_instructions %></li>
-            <li><%= medicine.refill_date %></li>
-          <% end %>
+          <li><%= @medicine.strength %></li>
+          <li><%= @medicine.doctor %></li>
+          <li><%= @medicine.dose_number %></li>
+          <li><%= @medicine.dose_instructions %></li>
+          <li><%= @medicine.how_to_refill %></li>
+          <li><%= @medicine.rx_number %></li>
+          <li><%= @medicine.number_in_bottle %></li>
+          <li><%= @medicine.refill_date %></li>
         </ul>
       </p>
       <form method="get" action="/logout">
