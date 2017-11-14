@@ -1,0 +1,55 @@
+<div class="container">
+  <header><img src="" class="img-responsive main-image"></header>
+  <div class="col-md-8 col-md-offset-2">
+    <h2>Add a new medication</h2>
+
+    <div class="content">
+      <p>
+        <form method="post" action="/medicines">
+          <label for="name">Medicine Name:</label>
+            <input type="text" id="name" name="medicine[name]"/>
+            <br></br>
+
+          <label for="strength">Strength:</label>
+            <input type="text" id="strength" name="medicine[strength]"/>
+            <br></br>
+
+          <label for="doctor">Prescribing Doctor:</label>
+            <input type="text" id="doctor" name="medicine[doctor]"/>
+            <br></br>
+
+          <label for="how_to_refill">How to Refill:</label>
+            <input type="text" id="how_to_refill" name="medicine[how_to_refill]"/>
+            <br></br>
+
+          <label for="rx_number">Rx Number:</label>
+            <input type="text" id="rx_number" name="medicine[rx_number]"/>
+            <br></br>
+
+          <label for="dose_number">How many pills per day?:</label>
+            <input type="text" id="dose_number" name="medicine[dose_number]"/>
+            <br></br>
+
+          <label for="dose_instructions">Instructions for taking the medicine:</label>
+            <input type="text" id="dose_instructions" name="medicine[dose_instructions]"/>
+            <br></br>
+
+          <label for="number_in_bottle">How many are in the bottle?</label>
+            <input type="text" id="number_in_bottle" name="medicine[number_in_bottle]"/>
+            <br></br>
+
+          <input type="submit" value="Add"/>
+        </form>
+      </p>
+    </div>
+
+    <div class="sidebar">
+      <h3></h3>
+      <ul>
+        <li>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
