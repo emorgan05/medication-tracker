@@ -1,5 +1,6 @@
 class UserController < ApplicationController
 
+  #### signup
   get '/signup' do
     erb :'users/signup'
   end
@@ -12,5 +13,14 @@ class UserController < ApplicationController
     end
 
     redirect to '/medicines'
+  end
+
+  #### login
+  get '/login' do
+    erb :'users/login'
+  end
+
+  post '/login' do
+
   end
 end
