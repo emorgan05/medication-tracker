@@ -41,4 +41,11 @@ class MedicineController < ApplicationController
     redirect to "medicines/#{@medicine.id}"
   end
 
+  #### user can delete a medicine
+  post '/medicines/:id/delete' do
+    @medicine = Medicine.find(params[:id])
+    @medicine.delete
+    redirect to '/medicines'
+  end
+
 end
