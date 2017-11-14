@@ -22,9 +22,15 @@ class MedicineController < ApplicationController
   end
 
   #### user can retrieve details for one medicine
-  get '/medicine/:id' do
+  get '/medicines/:id' do
     @medicine = Medicine.find(params[:id])
     erb :'medicines/show'
   end
 
+
+  #### user can edit a medicine
+  get '/medicines/:id/edit' do
+    @medicine = Medicine.find(params[:id])
+    erb :'medicines/edit'
+  end
 end

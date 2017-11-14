@@ -7,7 +7,7 @@
       <p>
         <ul>
           <% @user.medicines.each do |medicine| %>
-            <li><h3><a href="/medicine/<%= medicine.id %>"><%= medicine.name %></a></h3></li>
+            <li><h3><a href="/medicines/<%= medicine.id %>"><%= medicine.name %></a></h3></li>
             <li><%= medicine.strength %></li>
             <li><%= medicine.doctor %></li>
             <li><%= medicine.dose_number %></li>
