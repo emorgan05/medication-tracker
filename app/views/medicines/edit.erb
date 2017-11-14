@@ -5,7 +5,7 @@
 
     <div class="content">
       <p>
-        <form method="post" action="/medicine/<%= @medicine.name %>">
+        <form method="post" action="/medicines/<%= @medicine.id %>">
           <input type="hidden" id="hidden" name="_method" value="patch"/>
 
           <label for="name">Medicine Name:</label>

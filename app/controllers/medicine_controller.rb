@@ -33,4 +33,12 @@ class MedicineController < ApplicationController
     @medicine = Medicine.find(params[:id])
     erb :'medicines/edit'
   end
+
+  patch '/medicines/:id' do
+    @medicine = Medicine.find(params[:id])
+    @medicine.update(params[:medicine])
+
+    redirect to "medicines/#{@medicine.id}"
+  end
+
 end
