@@ -5,6 +5,12 @@ class UserController < ApplicationController
   end
 
   post '/signup' do
+    user = User.new(params[:user])
+    user.save
+    if user.save
+      session[:id] = user.id
+    end
 
+    redirect to '/medicines'
   end
 end
