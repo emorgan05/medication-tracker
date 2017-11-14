@@ -1,6 +1,6 @@
 class MedicineController < ApplicationController
 
   get '/medicines' do
-    erb :index
+    erb :'medicines/index'
   end
 end
