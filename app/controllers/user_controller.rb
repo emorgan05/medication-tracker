@@ -44,6 +44,7 @@ class UserController < ApplicationController
       session[:id] = user.id
       redirect to '/medicines'
     else
+      flash[:message] = "The username or password are incorrect."
       redirect to '/login'
     end
   end

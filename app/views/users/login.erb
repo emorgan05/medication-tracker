@@ -4,6 +4,9 @@
     <h2>Login to your Account</h2>
 
     <div class="content">
+      <% if flash.has?(:message) %>
+        <p><b><%= flash[:message] %></b></p>
+      <% end %>
       <form method="post" action="/login">
         <label for="username">Username:</label>
           <input type="text" id="username" name="username"/>
