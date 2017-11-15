@@ -24,6 +24,9 @@
       <form method="post" action="/medicines/<%= @medicine.id %>/delete">
         <input type="submit" value="Delete this medicine"/>
       </form>
+      <form method="get" action="/medicines">
+        <input type="submit" value="Back to your medicines"/>
+      </form>
       <form method="get" action="/logout">
         <input type="submit" value="Logout"/>
       </form>
