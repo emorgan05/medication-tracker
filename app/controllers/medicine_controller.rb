@@ -6,6 +6,7 @@ class MedicineController < ApplicationController
       @user = User.find(session[:id])
       erb :'medicines/index'
     else
+      flash[:message] = "Please login to see your medicines, or signup for a new account."
       redirect to '/'
     end
   end

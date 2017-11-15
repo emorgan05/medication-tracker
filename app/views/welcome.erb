@@ -4,6 +4,9 @@
     <h2>Welcome to Medication Tracker</h2>
 
     <div class="content">
+      <% if flash.has?(:message) %>
+        <p><b><%= flash[:message] %></b></p>
+      <% end %>
       <p>Our mission is to help you be your healthiest by tracking all your medications and when you need refills.</p>
       <p>With your account, you'll create a clear, easy to read, detailed account of all medications, for those moments at the doctor's office.</p>
       <p>You'll also get notices about when it's time to order a refill.</p>
