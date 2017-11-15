@@ -41,18 +41,24 @@ class MedicineController < ApplicationController
     end
   end
 
-
   #### user can edit a medicine
   get '/medicines/:id/edit' do
-    @medicine = Medicine.find(params[:id])
-    erb :'medicines/edit'
+    if logged_in?(session) && current_user(session)
+      @medicine = Medicine.find(params[:id])
+      erb :'medicines/edit'
+    else
+      redirect to '/'
+    end
   end
 
   patch '/medicines/:id' do
-    @medicine = Medicine.find(params[:id])
-    @medicine.update(params[:medicine])
-
-    redirect to "medicines/#{@medicine.id}"
+    if params[:medicine][:name] != "" && params[:medicine][:dose_number] != "" && params[:medicine][:number_in_bottle] != ""
+      @medicine = Medicine.find(params[:id])
+      @medicine.update(params[:medicine])
+      redirect to "medicines/#{@medicine.id}"
+    else
+      redirect to "medicines/#{@medicine.id}/edit"
+    end
   end
 
   #### user can delete a medicine
