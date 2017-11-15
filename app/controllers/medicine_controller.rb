@@ -52,7 +52,8 @@ class MedicineController < ApplicationController
     if logged_in?(session) && current_user(session).id == @medicine.user_id
       erb :'medicines/edit'
     else
-      redirect to '/'
+      flash[:message] = "You can only edit your medicines. Please select from the list below."
+      redirect to '/medicines'
     end
   end
 
