@@ -1,12 +1,12 @@
-<!-- # <% if flash.has?(:message) %> -->
-<!-- #  <%= flash[:message] %> -->
-<!-- # <% end %> -->
 <div class="container">
   <header><img src="" class="img-responsive main-image"></header>
   <div class="col-md-8 col-md-offset-2">
     <h2>Signup for a New Account</h2>
 
     <div class="content">
+      <% if flash.has?(:message) %>
+        <p><b><%= flash[:message] %></b></p>
+      <% end %>
       <form method="post" action="/signup">
         <label for="username">Username:</label>
           <input type="text" id="username" name="user[username]"/>
