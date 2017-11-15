@@ -35,8 +35,8 @@ class MedicineController < ApplicationController
 
   #### user can retrieve details for one medicine
   get '/medicines/:id' do
-    if logged_in?(session) && current_user(session)
-      @medicine = Medicine.find(params[:id])
+    @medicine = Medicine.find(params[:id])
+    if logged_in?(session) && current_user(session).id == @medicine.user_id
       erb :'medicines/show'
     else
       redirect to '/'
@@ -45,8 +45,8 @@ class MedicineController < ApplicationController
 
   #### user can edit a medicine
   get '/medicines/:id/edit' do
-    if logged_in?(session) && current_user(session)
-      @medicine = Medicine.find(params[:id])
+    @medicine = Medicine.find(params[:id])
+    if logged_in?(session) && current_user(session).id == @medicine.user_id
       erb :'medicines/edit'
     else
       redirect to '/'
@@ -65,8 +65,8 @@ class MedicineController < ApplicationController
 
   #### user can delete a medicine
   post '/medicines/:id/delete' do
-    if logged_in?(session) && current_user(session)
-      @medicine = Medicine.find(params[:id])
+    @medicine = Medicine.find(params[:id])
+    if logged_in?(session) && current_user(session).id == @medicine.user_id
       @medicine.delete
       redirect to '/medicines'
     else
