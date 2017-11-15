@@ -5,7 +5,7 @@
 
     <div class="content">
       <% if flash.has?(:message) %>
-        <p><b><%= flash[:message] %></b></p>
+        <p class="red"><b><%= flash[:message] %></b></p>
       <% end %>
       <p>
         <ul>
@@ -15,8 +15,11 @@
             <li>Prescribing Doctor: <%= medicine.doctor %></li>
             <li>Number per day: <%= medicine.dose_number %></li>
             <li>Instructions: <%= medicine.dose_instructions %></li>
-            <li>Call for a refill: <%= medicine.call_for_refill.strftime("%b %-d, %Y") %></li>
-            <li>Current bottle will run out: <%= medicine.refill_date.strftime("%b %-d, %Y") %></li>
+            <% if medicine.call_for_refill ==  Datetime.now %>
+              <li class="red">Call for a refill: <%= medicine.call_for_refill.strftime("%b %-d, %Y") %></li>
+            <% end %>
+            <% if medicine.call_for_refill ==  Datetime.now %>
+            <li class="red">Current bottle will run out: <%= medicine.refill_date.strftime("%b %-d, %Y") %></li>
           <% end %>
         </ul>
       </p>
@@ -31,11 +34,7 @@
     </div>
 
     <div class="sidebar">
-      <h3></h3>
-      <ul>
-        <li>
-        </li>
-      </ul>
+      <img src="images/pill-bottle.jpg" class="img-responsive main-image">
     </div>
 
   </div>

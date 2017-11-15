@@ -5,7 +5,7 @@
 
     <div class="content">
       <% if flash.has?(:message) %>
-        <p><b><%= flash[:message] %></b></p>
+        <p class="red"><b><%= flash[:message] %></b></p>
       <% end %>
       <p>
         <form method="post" action="/medicines/<%= @medicine.id %>">
@@ -50,11 +50,7 @@
     </div>
 
     <div class="sidebar">
-      <h3></h3>
-      <ul>
-        <li>
-        </li>
-      </ul>
+      <img src="images/pill-bottle.jpg" class="img-responsive main-image">
     </div>
 
   </div>
