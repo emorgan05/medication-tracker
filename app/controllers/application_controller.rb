@@ -11,7 +11,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :welcome
+    if !logged_in?(session)
+      erb :welcome
+    else
+      redirect to '/medicines'
+    end
   end
 
   helpers do
