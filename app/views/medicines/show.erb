@@ -6,14 +6,15 @@
     <div class="content">
       <p>
         <ul>
-          <li><%= @medicine.strength %></li>
-          <li><%= @medicine.doctor %></li>
-          <li><%= @medicine.dose_number %></li>
-          <li><%= @medicine.dose_instructions %></li>
-          <li><%= @medicine.how_to_refill %></li>
-          <li><%= @medicine.rx_number %></li>
-          <li><%= @medicine.number_in_bottle %></li>
-          <li><%= @medicine.refill_date %></li>
+          <li>Strength: <%= @medicine.strength %></li>
+          <li>Prescribing Doctor: <%= @medicine.doctor %></li>
+          <li>Number per day: <%= @medicine.dose_number %></li>
+          <li>Instructions: <%= @medicine.dose_instructions %></li>
+          <li>Where to get the refill: <%= @medicine.how_to_refill %></li>
+          <li>Rx number: <%= @medicine.rx_number %></li>
+          <li>Number of pills per bottle: <%= @medicine.number_in_bottle %></li>
+          <li>Call for a refill: <%= @medicine.call_for_refill.strftime("%b %-d, %Y") %></li>
+          <li>Current bottle will run out: <%= @medicine.refill_date.strftime("%b %-d, %Y") %></li>
         </ul>
       </p>
 
