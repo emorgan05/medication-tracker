@@ -33,8 +33,12 @@ class MedicineController < ApplicationController
 
   #### user can retrieve details for one medicine
   get '/medicines/:id' do
-    @medicine = Medicine.find(params[:id])
-    erb :'medicines/show'
+    if logged_in?(session) && current_user(session)
+      @medicine = Medicine.find(params[:id])
+      erb :'medicines/show'
+    else
+      redirect to '/'
+    end
   end
 
 
