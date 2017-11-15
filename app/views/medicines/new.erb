@@ -4,6 +4,9 @@
     <h2>Add a new medication</h2>
 
     <div class="content">
+      <% if flash.has?(:message) %>
+        <p><b><%= flash[:message] %></b></p>
+      <% end %>
       <p>
         <form method="post" action="/medicines">
           <label for="name">Medicine Name:</label>

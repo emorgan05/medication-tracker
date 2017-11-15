@@ -22,7 +22,6 @@ class MedicineController < ApplicationController
   end
 
   post '/medicines' do
-    binding.pry
     if params[:medicine][:name] != "" && params[:medicine][:dose_number] != "" && params[:medicine][:number_in_bottle] != ""
       user = User.find(session[:id])
       medicine = Medicine.new(params[:medicine])
@@ -31,6 +30,7 @@ class MedicineController < ApplicationController
       medicine.save
       redirect to '/medicines'
     else
+      flash[:message] = "Medicine name, how many pills, and how many in the bottle are required fields."
       redirect to '/medicines/new'
     end
   end
