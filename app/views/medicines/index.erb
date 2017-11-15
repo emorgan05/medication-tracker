@@ -6,13 +6,14 @@
     <div class="content">
       <p>
         <ul>
-          <% @user.medicines.each do |medicine| %>
-            <li><h3><a href="/medicines/<%= medicine.id %>"><%= medicine.name %></a></h3></li>
-            <li><%= medicine.strength %></li>
-            <li><%= medicine.doctor %></li>
-            <li><%= medicine.dose_number %></li>
-            <li><%= medicine.dose_instructions %></li>
-            <li><%= medicine.refill_date %></li>
+          <% @user.medicines.each.with_index(1) do |medicine, index| %>
+            <li><h3><%= index %>. <a href="/medicines/<%= medicine.id %>"><%= medicine.name %></a></h3></li>
+            <li>Strength: <%= medicine.strength %></li>
+            <li>Prescribing Doctor: <%= medicine.doctor %></li>
+            <li>Number per day: <%= medicine.dose_number %></li>
+            <li>Instructions: <%= medicine.dose_instructions %></li>
+            <li>Call for a refill <%= medicine.call_for_refill.strftime("on %D") %></li>
+            <li>Current bottle will run out <%= medicine.refill_date.strftime("on %D") %></li>
           <% end %>
         </ul>
       </p>
