@@ -2,9 +2,12 @@ class MedicineController < ApplicationController
 
   #### show all medicines for the user
   get '/medicines' do
-    @user = User.find(session[:id])
-
-    erb :'medicines/index'
+    if logged_in?(session) && current_user(session)
+      @user = User.find(session[:id])
+      erb :'medicines/index'
+    else
+      redirect to '/'
+    end
   end
 
   #### user can create a new med

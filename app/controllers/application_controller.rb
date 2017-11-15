@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
-    def self.current_user(session)
+    def current_user(session)
       user = User.find(session[:id])
     end
 
