@@ -12,7 +12,7 @@ class UserController < ApplicationController
   post '/signup' do
     user = User.find_by(username: params[:username])
     if user
-      
+      flash[:message] = "That username already exists. Please choose a different username."
     elsif user && user.authenticate(params[:password])
       redirect to '/login'
     elsif params[:user][:username] != "" && params[:user][:email] != "" && params[:user][:password] != ""
@@ -23,6 +23,7 @@ class UserController < ApplicationController
       end
       redirect to '/medicines'
     else
+      flash[:message] = "All fields are required."
       redirect to '/signup'
     end
   end
