@@ -63,7 +63,8 @@ class MedicineController < ApplicationController
       @medicine.update(params[:medicine])
       redirect to "medicines/#{@medicine.id}"
     else
-      redirect to "medicines/#{@medicine.id}/edit"
+      flash[:message] = "Medicine name, how many pills, and how many in the bottle are required fields."
+      redirect to "medicines/#{params[:id]}/edit"
     end
   end
 
