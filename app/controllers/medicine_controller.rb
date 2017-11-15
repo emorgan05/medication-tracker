@@ -63,9 +63,13 @@ class MedicineController < ApplicationController
 
   #### user can delete a medicine
   post '/medicines/:id/delete' do
-    @medicine = Medicine.find(params[:id])
-    @medicine.delete
-    redirect to '/medicines'
+    if logged_in?(session) && current_user(session)
+      @medicine = Medicine.find(params[:id])
+      @medicine.delete
+      redirect to '/medicines'
+    else
+      redirect to '/'
+    end
   end
 
 end
