@@ -4,6 +4,9 @@
     <h2>Welcome, <%= @user.username %></h2>
 
     <div class="content">
+      <% if flash.has?(:message) %>
+        <p><b><%= flash[:message] %></b></p>
+      <% end %>
       <p>
         <ul>
           <% @user.medicines.each.with_index(1) do |medicine, index| %>
