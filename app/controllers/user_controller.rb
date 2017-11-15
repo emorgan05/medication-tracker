@@ -31,7 +31,11 @@ class UserController < ApplicationController
 
   #### login
   get '/login' do
-    erb :'users/login'
+    if !logged_in?(session)
+      erb :'users/login'
+    else
+      redirect to '/medicines'
+    end
   end
 
   post '/login' do
