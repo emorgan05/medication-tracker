@@ -75,7 +75,8 @@ class MedicineController < ApplicationController
       @medicine.delete
       redirect to '/medicines'
     else
-      redirect to '/'
+      flash[:message] = "You can only delete your medicines. Please select from the list below."
+      redirect to '/medicines'
     end
   end
 
