@@ -10,11 +10,12 @@ class UserController < ApplicationController
   end
 
   post '/signup' do
-    user = User.find_by(username: params[:username])
-    if user
-      flash[:message] = "That username already exists. Please choose a different username."
-    elsif user && user.authenticate(params[:password])
+    user = User.find_by(username: params[:user][:username])
+    if user && user.authenticate(params[:user][:password])
       redirect to '/login'
+    elsif user
+      flash[:message] = "That username already exists. Please choose a different username."
+      redirect to '/signup'
     elsif params[:user][:username] != "" && params[:user][:email] != "" && params[:user][:password] != ""
       user = User.new(params[:user])
       user.save
