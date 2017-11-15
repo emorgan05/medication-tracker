@@ -9,8 +9,10 @@ I used ActiveRecord and inherited from both Migrations and Base classes
 Models = User, Medicine
 - [x] Include at least one has_many relationship (x has_many y e.g. User has_many Posts)
 User has_many Medicines
-- [ ] Include user accounts
-- [ ] Ensure that users can't modify content created by other users
+- [x] Include user accounts
+User has an account and their password is authenticated on login
+- [x] Ensure that users can't modify content created by other users
+All CRUD methods use the helper methods logged_in? and current_user to check that the user attempting to modify is logged in and is the current user, so only the user who created it can modify it
 - [x] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
 Medicine can be created with the new route/form, read with the show.erb, updated with the edit route/form, and destroyed with the delete route/form
 - [ ] Include user input validations
