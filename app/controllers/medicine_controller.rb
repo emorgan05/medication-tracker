@@ -16,6 +16,7 @@ class MedicineController < ApplicationController
     if logged_in?(session) && current_user(session)
       erb :'medicines/new'
     else
+      flash[:message] = "Please login to add a medicine, or signup for a new account."
       redirect to '/'
     end
   end
