@@ -12,16 +12,23 @@ class MedicineController < ApplicationController
 
   #### user can create a new med
   get '/medicines/new' do
-    erb :'medicines/new'
+    if logged_in?(session) && current_user(session)
+      erb :'medicines/new'
+    else
+      redirect to '/'
+    end
   end
 
   post '/medicines' do
-    user = User.find(session[:id])
-    medicine = Medicine.new(params[:medicine])
-    medicine.user_id = user.id
-    medicine.save
-
-    redirect to '/medicines'
+    if params[:medicine][:name] != "" && params[:medicine][:dose_number] != "" && params[:medicine][:number_in_bottle] != ""
+      user = User.find(session[:id])
+      medicine = Medicine.new(params[:medicine])
+      medicine.user_id = user.id
+      medicine.save
+      redirect to '/medicines'
+    else
+      redirect to '/medicines/new'
+    end
   end
 
   #### user can retrieve details for one medicine
