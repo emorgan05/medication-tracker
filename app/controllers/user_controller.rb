@@ -18,6 +18,7 @@ class UserController < ApplicationController
       redirect to '/signup'
     elsif params[:user][:username] != "" && params[:user][:email] != "" && params[:user][:password] != ""
       user = User.new(params[:user])
+      user.calendar = Calendar.new
       user.save
       if user.save
         session[:id] = user.id
