@@ -7,11 +7,12 @@
       <% if flash.has?(:message) %>
         <p class="red"><b><%= flash[:message] %></b></p>
       <% end %>
-      <p>
-        <form method="post" action="/medicines/<%= @medicine.id %>">
-          
-          <input type="submit" value="Edit"/>
-        </form>
+      <p>Refills needed on:
+        <ul>
+          <% @dates.each do |date| %>
+            <li><%= date.strftime("%b %-d, %Y") %></li>
+          <% end %>
+        </ul>
       </p>
       <br></br>
       <form method="get" action="/medicines">
