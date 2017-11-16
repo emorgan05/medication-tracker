@@ -15,11 +15,16 @@
             <li>Prescribing Doctor: <%= medicine.doctor %></li>
             <li>Number per day: <%= medicine.dose_number %></li>
             <li>Instructions: <%= medicine.dose_instructions %></li>
-            <% if medicine.call_for_refill ==  Datetime.now %>
+            <% if medicine.call_for_refill ==  DateTime.now %>
               <li class="red">Call for a refill: <%= medicine.call_for_refill.strftime("%b %-d, %Y") %></li>
+            <% else %>
+              <li>Call for a refill: <%= medicine.call_for_refill.strftime("%b %-d, %Y") %></li>
             <% end %>
-            <% if medicine.call_for_refill ==  Datetime.now %>
-            <li class="red">Current bottle will run out: <%= medicine.refill_date.strftime("%b %-d, %Y") %></li>
+            <% if medicine.call_for_refill ==  DateTime.now %>
+              <li class="red">Current bottle will run out: <%= medicine.refill_date.strftime("%b %-d, %Y") %></li>
+            <% else %>
+              <li>Current bottle will run out: <%= medicine.refill_date.strftime("%b %-d, %Y") %></li>
+            <% end %>
           <% end %>
         </ul>
       </p>
@@ -27,6 +32,7 @@
       <form method="get" action="/medicines/new">
         <input type="submit" value="Add a new medicine"/>
       </form>
+      <br></br>
       <form method="get" action="/logout">
         <input type="submit" value="Logout"/>
       </form>

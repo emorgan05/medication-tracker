@@ -21,12 +21,15 @@
       <form method="get" action="/medicines/<%= @medicine.id %>/edit">
         <input type="submit" value="Edit this medicine"/>
       </form>
+      </br>
       <form method="post" action="/medicines/<%= @medicine.id %>/delete">
         <input type="submit" value="Delete this medicine"/>
       </form>
+      </br>
       <form method="get" action="/medicines">
         <input type="submit" value="Back to your medicines"/>
       </form>
+      </br>
       <form method="get" action="/logout">
         <input type="submit" value="Logout"/>
       </form>

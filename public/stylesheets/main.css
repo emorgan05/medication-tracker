@@ -13,7 +13,7 @@
 
   /* --- Welcome Page Styles --- */
   body {
-    background-color: #e55926;
+    background-color: #26d5e5;
     color: #333;
     font-family: Sans-Serif;
     line-height: 18px;
@@ -79,7 +79,7 @@
   .red {
     color: red;
   }
-  
+
   footer.branding {
     border-top: 2px solid #ccc;
     margin-top: 20px;
