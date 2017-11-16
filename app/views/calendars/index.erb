@@ -1,0 +1,28 @@
+<div class="container">
+  <header><img src="" class="img-responsive main-image"></header>
+  <div class="col-md-8 col-md-offset-2">
+    <h2>Refill Calendar</h2>
+
+    <div class="content">
+      <% if flash.has?(:message) %>
+        <p class="red"><b><%= flash[:message] %></b></p>
+      <% end %>
+      <p>
+        <form method="post" action="/medicines/<%= @medicine.id %>">
+          
+          <input type="submit" value="Edit"/>
+        </form>
+      </p>
+      <br></br>
+      <form method="get" action="/medicines">
+        <input type="submit" value="Back to your medicines"/>
+      </form>
+      <br></br>
+    </div>
+
+    <div class="sidebar">
+      <img src="/images/pill-bottle.jpg" class="img-responsive main-image">
+    </div>
+
+  </div>
+</div>
