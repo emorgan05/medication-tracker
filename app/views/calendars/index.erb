@@ -10,7 +10,12 @@
       <p>Refills needed on:
         <ul>
           <% @dates.each do |date| %>
-            <li><%= date.strftime("%b %-d, %Y") %></li>
+            <% @medicine = Medicine.find_by(refill_date: date) %>
+            <li>
+              <a href="/medicines/<%= @medicine.id %>">
+                <%= date.strftime("%b %-d, %Y") %>
+              </a>
+            </li>
           <% end %>
         </ul>
       </p>
