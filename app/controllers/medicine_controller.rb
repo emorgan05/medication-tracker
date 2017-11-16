@@ -61,6 +61,9 @@ class MedicineController < ApplicationController
     if params[:medicine][:name] != "" && params[:medicine][:dose_number] != "" && params[:medicine][:number_in_bottle] != ""
       @medicine = Medicine.find(params[:id])
       @medicine.update(params[:medicine])
+      @medicine.refill_date = ""
+      @medicine.refill_date = @medicine.calculate_refill_date
+      @medicine.save
       redirect to "medicines/#{@medicine.id}"
     else
       flash[:message] = "Medicine name, how many pills, and how many in the bottle are required fields."
