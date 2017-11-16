@@ -75,7 +75,7 @@ class MedicineController < ApplicationController
   post '/medicines/:id/delete' do
     @medicine = Medicine.find(params[:id])
     if logged_in?(session) && current_user(session).id == @medicine.user_id
-      @medicine.delete
+      @medicine.destroy
       redirect to '/medicines'
     else
       flash[:message] = "You can only delete your medicines. Please select from the list below."
