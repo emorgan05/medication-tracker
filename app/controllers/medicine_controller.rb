@@ -21,11 +21,11 @@ class MedicineController < ApplicationController
   end
 
   post '/medicines' do
-    medicine = Medicine.new(params[:medicine])
-    medicine.user_id = current_user(session).id
-    medicine.refill_date = medicine.calculate_refill_date
-    medicine.save
-    if medicine.save
+    if Medicine.new(params[:medicine]).valid?
+      medicine = Medicine.new(params[:medicine])
+      medicine.user_id = current_user(session).id
+      medicine.refill_date = medicine.calculate_refill_date
+      medicine.save
       redirect to '/medicines'
     else
       flash[:message] = "Medicine name, how many pills, and how many in the bottle are required fields."
