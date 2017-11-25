@@ -16,17 +16,17 @@ class UserController < ApplicationController
     elsif user
       flash[:message] = "That username already exists. Please choose a different username."
       redirect to '/signup'
-    elsif params[:user][:username] != "" && params[:user][:email] != "" && params[:user][:password] != ""
+    else
       user = User.new(params[:user])
       user.calendar = Calendar.new
       user.save
       if user.save
         session[:id] = user.id
+        redirect to '/medicines'
+      else
+        flash[:message] = "All fields are required."
+        redirect to '/signup'
       end
-      redirect to '/medicines'
-    else
-      flash[:message] = "All fields are required."
-      redirect to '/signup'
     end
   end
 

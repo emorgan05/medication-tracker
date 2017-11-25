@@ -3,7 +3,6 @@ class MedicineController < ApplicationController
   #### show all medicines for the user
   get '/medicines' do
     if logged_in?(session) && current_user(session)
-      @user = User.find(session[:id])
       erb :'medicines/index'
     else
       flash[:message] = "Please login to see your medicines, or signup for a new account."
@@ -72,7 +71,7 @@ class MedicineController < ApplicationController
   end
 
   #### user can delete a medicine
-  post '/medicines/:id/delete' do
+  delete '/medicines/:id/delete' do
     @medicine = Medicine.find(params[:id])
     if logged_in?(session) && current_user(session).id == @medicine.user_id
       @medicine.destroy

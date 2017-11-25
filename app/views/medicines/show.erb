@@ -23,6 +23,7 @@
       </form>
       </br>
       <form method="post" action="/medicines/<%= @medicine.id %>/delete">
+        <input type="hidden" id="hidden" name="_method" value="delete"/>
         <input type="submit" value="Delete this medicine"/>
       </form>
       </br>
