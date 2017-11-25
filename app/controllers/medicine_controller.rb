@@ -21,12 +21,11 @@ class MedicineController < ApplicationController
   end
 
   post '/medicines' do
-    if params[:medicine][:name] != "" && params[:medicine][:dose_number] != "" && params[:medicine][:number_in_bottle] != ""
-      user = User.find(session[:id])
-      medicine = Medicine.new(params[:medicine])
-      medicine.user_id = user.id
-      medicine.refill_date = medicine.calculate_refill_date
-      medicine.save
+    medicine = Medicine.new(params[:medicine])
+    medicine.user_id = current_user(session).id
+    medicine.refill_date = medicine.calculate_refill_date
+    medicine.save
+    if medicine.save
       redirect to '/medicines'
     else
       flash[:message] = "Medicine name, how many pills, and how many in the bottle are required fields."
@@ -57,16 +56,20 @@ class MedicineController < ApplicationController
   end
 
   patch '/medicines/:id' do
-    if params[:medicine][:name] != "" && params[:medicine][:dose_number] != "" && params[:medicine][:number_in_bottle] != ""
-      @medicine = Medicine.find(params[:id])
+    @medicine = Medicine.find(params[:id])
+    if logged_in?(session) && current_user(session).id == @medicine.user_id
       @medicine.update(params[:medicine])
-      @medicine.refill_date = ""
-      @medicine.refill_date = @medicine.calculate_refill_date
+      if params[:medicine][:refilled] == "Y"
+        @medicine.refill_date = ""
+        @medicine.refill_date = @medicine.calculate_refill_date
+      end
       @medicine.save
-      redirect to "medicines/#{@medicine.id}"
-    else
-      flash[:message] = "Medicine name, how many pills, and how many in the bottle are required fields."
-      redirect to "medicines/#{params[:id]}/edit"
+      if @medicine.save
+        redirect to "medicines/#{@medicine.id}"
+      else
+        flash[:message] = "Medicine name, how many pills, and how many in the bottle are required fields."
+        redirect to "medicines/#{params[:id]}/edit"
+      end
     end
   end
 
