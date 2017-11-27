@@ -40,12 +40,17 @@ class MedicineController < ApplicationController
 
   #### user can retrieve details for one medicine
   get '/medicines/:id' do
-    @medicine = Medicine.find(params[:id])
-    if logged_in? && current_user.id == @medicine.user_id
-      erb :'medicines/show'
+    if logged_in?
+      @medicine = Medicine.find(params[:id])
+      if current_user.id == @medicine.user_id
+        erb :'medicines/show'
+      else
+        flash[:message] = "You can only view your medicines. Please select from the list below."
+        redirect to '/medicines'
+      end
     else
-      flash[:message] = "You can only view your medicines. Please select from the list below."
-      redirect to '/medicines'
+      flash[:message] = "Please login to edit a medicine, or signup for a new account."
+      redirect to '/'
     end
   end
 
