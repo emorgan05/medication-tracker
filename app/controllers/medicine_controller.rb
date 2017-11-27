@@ -22,11 +22,11 @@ class MedicineController < ApplicationController
 
   post '/medicines' do
     if logged_in?
-      if Medicine.new(params[:medicine]).valid? #I'm checking here to see if the params are valid, because I need the dose_number and number_in_bottle to run the #calculate_refill_date. If they aren't present, the app will break without useful error messages for the user. I am relying on #valid? instead of waiting for #save so that I don't have to make multiple calls to the db in this one block.
-        medicine = Medicine.new(params[:medicine])
-        medicine.user_id = current_user.id
+      medicine = Medicine.new(params[:medicine])
+      medicine.user_id = current_user.id
+      if medicine.save
         medicine.refill_date = medicine.calculate_refill_date
-        medicine.save
+        medicine.save # I need the second call to save so that the refill_date just calculated is saved to the db
         redirect to '/medicines'
       else
         flash[:message] = medicine.errors.full_messages.to_sentence
