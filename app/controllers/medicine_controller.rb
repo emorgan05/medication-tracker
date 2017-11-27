@@ -97,13 +97,18 @@ class MedicineController < ApplicationController
 
   #### user can delete a medicine
   delete '/medicines/:id/delete' do
-    @medicine = Medicine.find(params[:id])
-    if logged_in? && current_user.id == @medicine.user_id
-      @medicine.destroy
-      redirect to '/medicines'
+    if logged_in?
+      @medicine = Medicine.find(params[:id])
+      if current_user.id == @medicine.user_id
+        @medicine.destroy
+        redirect to '/medicines'
+      else
+        flash[:message] = "You can only delete your medicines. Please select from the list below."
+        redirect to '/medicines'
+      end
     else
-      flash[:message] = "You can only delete your medicines. Please select from the list below."
-      redirect to '/medicines'
+      flash[:message] = "Please login to delete a medicine, or signup for a new account."
+      redirect to '/'
     end
   end
 
