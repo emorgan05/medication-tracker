@@ -63,7 +63,6 @@ class MedicineController < ApplicationController
         @medicine.refill_date = ""
         @medicine.refill_date = @medicine.calculate_refill_date
       end
-      @medicine.save
       if @medicine.save
         redirect to "medicines/#{@medicine.id}"
       else
