@@ -56,29 +56,42 @@ class MedicineController < ApplicationController
 
   #### user can edit a medicine
   get '/medicines/:id/edit' do
-    @medicine = Medicine.find(params[:id])
-    if logged_in? && current_user.id == @medicine.user_id
-      erb :'medicines/edit'
+    if logged_in?
+      @medicine = Medicine.find(params[:id])
+      if current_user.id == @medicine.user_id
+        erb :'medicines/edit'
+      else
+        flash[:message] = "You can only edit your medicines. Please select from the list below."
+        redirect to '/medicines'
+      end
     else
-      flash[:message] = "You can only edit your medicines. Please select from the list below."
-      redirect to '/medicines'
+      flash[:message] = "Please login to edit a medicine, or signup for a new account."
+      redirect to '/'
     end
   end
 
   patch '/medicines/:id' do
-    @medicine = Medicine.find(params[:id])
-    if logged_in? && current_user.id == @medicine.user_id
-      @medicine.update(params[:medicine])
-      if params[:medicine][:refilled] == "Y"
-        @medicine.refill_date = ""
-        @medicine.refill_date = @medicine.calculate_refill_date
-      end
-      if @medicine.save
-        redirect to "medicines/#{@medicine.id}"
+    if logged_in?
+      @medicine = Medicine.find(params[:id])
+      if current_user.id == @medicine.user_id
+        @medicine.update(params[:medicine])
+        if params[:refilled] == "Y"
+          @medicine.refill_date = ""
+          @medicine.refill_date = @medicine.calculate_refill_date
+        end
+        if @medicine.save
+          redirect to "medicines/#{@medicine.id}"
+        else
+          flash[:message] = @medicine.errors.full_messages.to_sentence
+          redirect to "medicines/#{params[:id]}/edit"
+        end
       else
-        flash[:message] = "Medicine name, how many pills, and how many in the bottle are required fields."
-        redirect to "medicines/#{params[:id]}/edit"
+        flash[:message] = "You can only edit your medicines. Please select from the list below."
+        redirect to '/medicines'
       end
+    else
+      flash[:message] = "Please login to edit a medicine, or signup for a new account."
+      redirect to '/'
     end
   end
 
