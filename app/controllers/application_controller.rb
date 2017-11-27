@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    if !logged_in?(session)
+    if !logged_in?
       erb :welcome
     else
       redirect to '/medicines'
@@ -21,12 +21,12 @@ class ApplicationController < Sinatra::Base
   end
 
   helpers do
-    def current_user(session)
-      @current_user ||= User.find(session[:id]) if session[:id]
+    def current_user
+      @current_user ||= User.find_by(id: session[:id]) if session[:id]
     end
 
-    def logged_in?(session)
-      !!session[:id]
+    def logged_in?
+      !!current_user
     end
   end
 end
